@@ -1,0 +1,526 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!--wrapper start-->
+<div class="wrapper">
+	<!--header-->
+	<header id="header">
+	<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#bs-carousel" data-slide-to="1"></li>
+    <li data-target="#bs-carousel" data-slide-to="2"></li>
+  </ol>
+  
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item slides active">
+      <div class="slide-1"></div>
+      <div class="hero">
+        <hgroup>
+		 <img src="{% static 'img/logo.png' %}" alt="logo"/>        
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-2"></div>
+      <div class="hero">        
+        <hgroup>
+		   <img src="{% static 'img/logo.png' %}" alt="logo"/>       
+        </hgroup>       
+        
+      </div>
+    </div>
+    <div class="item slides">
+      <div class="slide-3"></div>
+      <div class="hero">        
+        <hgroup>
+		 <img src="{% static 'img/logo.png' %}" alt="logo"/>
+        
+        </hgroup>
+        
+      </div>
+    </div>
+  </div> 
+
+
+	<div class="menu">
+		<nav class="navbar navbar-wrapper"> 
+      <div class="container">
+            <div class="navbar-header">
+        <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        </div>
+	    <div id="main-nav" class="collapse navbar-collapse">
+			 <ul class="nav navbar-nav">
+			  <li><a href="#header" class="scroll-link">Главная</a></li>
+			  <li><a href="#service" class="scroll-link">Услуги</a></li>
+			  <li><a href="#aboutUs" class="scroll-link">О Нас</a></li>
+			  <li><a href="#gallery" class="scroll-link">Галерея</a></li> 
+			  <li><a href="#feedback" class="scroll-link">Обратная связь</a></li> 
+			  <li><a href="#contact" class="scroll-link">Контакты</a></li>
+			  <li><a href="{% url 'reservation' %}" class="reservation-link">Забронировать столик</a></li>
+			  {% if user.is_authenticated %}
+			    <li><span class="nav-text">Привет, {{ user.username }}!</span></li>
+			    <li><a href="{% url 'logout' %}" class="auth-link">Выйти</a></li>
+			  {% else %}
+			    <li><a href="{% url 'login' %}" class="auth-link">Войти</a></li>
+			    <li><a href="{% url 'register' %}" class="auth-link">Регистрация</a></li>
+			  {% endif %}
+			</ul>
+      </div>
+      </div>  
+		</nav>
+	</div>		
+	</header>
+	
+<section class="service page-section" id="service">
+      <div class="container text-center">
+         <div class="heading">			
+			<h2>Услуги</h2>			
+			<h3>Завтрак, обед и ужин в нашем заведении для вас <br></h3>
+		</div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-fire"></i>
+                  </div>
+                  <h3>Уютная атмосфера</h3>
+                  <div class="box-area-text"></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-home"></i>
+                  </div>
+                  <h3>Домашняя выпечка</h3>
+                  <div class="box-area-text"> </div>
+              </div>
+            </div>
+                <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                  <h3>Банкетный зал</h3>
+                  <div class="box-area-users"> </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-film"></i>
+                  </div>
+                  <h3>Киновечера</h3>
+                  <div class="box-area-text"> </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-bomb"></i>
+                  </div>
+                  <h3>Вечеринки</h3>
+                  <div class="box-area-text"> </div>
+              </div>
+            </div>
+        
+			<div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-music"></i>
+                  </div>
+                  <h3>Живая музыка</h3>
+                  <div class="box-area-text"> </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+	
+	<!--about us-->
+	<section class="aboutus page-section" id="aboutUs">
+	<div class="container">
+	     <div class="heading">			
+			<h2>О Нас</h2>			
+			<h3>Кафе «Легенда» — это место, где можно провести время в уютной атмосфере, наслаждаясь вкусной едой и 
+				живой музыкой</h3>
+		</div>
+		
+		<div class="content">
+			 
+			<p>В кафе есть детская комната с настольными играми, что делает его идеальным местом для семейного отдыха.</p> 
+			<p>А так же вечеринки, дискотеки с диджеем и ведущим,английский клуб, уютные вечера с живой музыкой,книжный клуб, мастер-классы настольные игры и ароматный кофе со свежей домашней выпечкой</p>
+			<p>В меню представлены разнообразные блюда, салат "Авача", драники с красной икрой и сметаной, комбо завтраки, сырники вареники с разнообразной начинкой.</p>
+			
+
+		</div> 	
+	</div>
+	</section>
+	 
+	<!--gallery-->
+	<section class="gallery page-section" id="gallery">
+		<div class="container">
+		  <div class="heading">			
+			<h2>Галерея</h2>			
+			<h3>Великолепное разнообразие русской кухни</h3>
+		</div> 
+			
+			<div id="grid-gallery" class="grid-gallery">
+
+					<section class="grid-wrap">
+						<ul class="grid">
+							<li class="grid-sizer"></li><!-- for Masonry column width -->				
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img1.jpg' %}" alt=""/>
+									<figcaption><h3>Сырники с вишней</h3> </figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img2.jpg' %}" alt=""/>
+									<figcaption><h3>Стейк форели с овощами гриль</h3></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img3.jpg' %}" alt=""/>
+									<figcaption><h3>Форель шеф-посола малосольная</h3></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img4.jpg' %}" alt=""/>
+									<figcaption><h3>Салат "Зуевский"</h3></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img5.jpg' %}" alt=""/>
+									<figcaption><h3>Блинчики с красной рыбой</h3></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img6.jpg' %}" alt=""/>
+									<figcaption><h3>Борщ</h3></figcaption>
+								</figure>
+							</li>
+							
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img7.jpg' %}" alt=""/>
+									<figcaption><h3>Комбо обед</h3></figcaption>
+								</figure>
+							</li>
+							
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img8.jpg' %}" alt=""/>
+									<figcaption><h3>Греча "По-Зуевски" </h3></figcaption>
+								</figure>
+							</li>
+						
+						</ul>
+					</section><!-- // end small images -->
+					
+					<section class="slideshow">
+						<ul>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img1.jpg' %}" alt=""/>
+									<figcaption><h3>Thundercats next level</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img2.jpg' %}" alt=""/>
+									<figcaption><h3>Bushwick selvage synth</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img3.jpg' %}" alt=""/>
+									<figcaption><h3>Bottle wayfarers locavore</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img4.jpg' %}" alt=""/>
+									<figcaption><h3>Letterpress asymmetrical</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img5.jpg' %}" alt=""/>
+									<figcaption><h3>Vice velit chia</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img6.jpg' %}" alt=""/>
+									<figcaption><h3>Brunch semiotics</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img7.jpg' %}" alt=""/>
+									<figcaption><h3>Brunch semiotics</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+							
+							<li>
+								<figure>
+									<img src="{% static 'img/gallery/img8.jpg' %}" alt=""/>
+									<figcaption><h3>Brunch semiotics</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare sem sit amet mauris bibendum, ac fringilla quam eleifend.</p></figcaption>
+								</figure>
+							</li>
+						</ul>
+						<nav>
+							<span class="icon nav-prev"></span>
+							<span class="icon nav-next"></span>
+							<span class="icon nav-close"></span>
+						</nav>
+						 
+					</section><!-- // end slideshow -->
+					
+				</div><!-- // grid-gallery -->
+			</div>
+	</section>
+	
+	<!--feedback-->
+	<section class="feedback page-section" id="feedback">
+	<div class="container">
+		<div class="heading">
+			
+			<h2>Отзывы гостей</h2>
+			
+			<h3></h3>
+		</div>
+	
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+        <!-- Bottom Carousel Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#quote-carousel" data-slide-to="1"></li>
+          <li data-target="#quote-carousel" data-slide-to="2"></li>
+        </ol>
+        
+        <!-- Carousel Slides / Quotes -->
+        <div class="carousel-inner">
+        
+          <!-- Quote 1 -->
+          <div class="item active">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="https://avatars.mds.yandex.net/get-altay/11551715/2a000001917e2cf2e7dd4111828e4fea46a8/XXXL" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Были первый раз. Уютное кафе, спокойная обстановка, очень доброжелательный персонал. Еда вкусная и домашняя. Особенно сразили блины с припёком - брали с языком, с рыбой и с яблоком, понравились каждому, кто их заказывал из нашей компании. А смузи "овсянка, сэр" вполне сойдёт за полноценный завтрак девушке, следящей за фигурой. Я лично предпочитаю что-то посущественнее - драники с яйцом пашот и рыбкой мне например очень подошли!) Обязательно придём ещё раз.</p>
+                  <small>Благодарим за теплые слова! Мы рады, что вам понравилось, будем ждать вас вновь! </small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!-- Quote 2 -->
+          <div class="item">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="https://avatars.mds.yandex.net/get-altay/14092818/2a00000193a06331e2a4c6d93ff41e4f644e/XXXL" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Кафе очень понравилось: от музыкального сопровождения и деталей интерьера до очень вкусного меню и вежливости сотрудников, которые буквально окружают заботой :)) удалось отдохнуть - обстановка очень располагала! Кофе вкусный, вареники с творогом вкусные (тесто прям что надо), сырники с вишней тоже (нет ощущения, что они размороженные)!
+				Спасибо большое! Будет возможность - приедем к Вам ещё раз обязательно:)</p>
+                  <small>Благодарим за теплые слова! Нам очень приятно, будем ждать вас снова!</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!-- Quote 3 -->
+          <div class="item">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="https://avatars.mds.yandex.net/get-altay/14021521/2a000001940e1a1bf63f0b4e59597b327b56/XXXL" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Попали в это кафе впервые и по всей видимости влюбились на век.
+					Атмосферно, чисто и безумно вкусно.
+					Так вкусно готовит только моя бабушка.
+					Очень рекомендую!
+					Как здорово, что в нашем городе появляются места, в которых можно отдохнуть душой.</p>
+                  <small>Благодарим за теплые слова! Мы рады, что вам все понравилось! Ждем Вас снова! С наступающим новым годом!</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+         
+      </div>                          
+    </div>
+  </div>
+
+ 
+	</div>
+	</section>
+	
+	<!--feedback-->
+	<section class="contact page-section" id="contact">
+	<div class="container">
+		<div class="heading">
+				
+				<h2>Обратная связь</h2>
+				
+				<h3>Мы будем рады каждому отзыву и пожеланию</h3>
+		</div>
+	</div>
+	<div class="container w960">
+      <div class="row">
+		<div id="success-message" class="alert alert-success" style="display: none;">
+			Ваше сообщение успешно отправлено!
+		</div>
+		<div id="error-message" class="alert alert-danger" style="display: none;">
+			Произошла ошибка при отправке сообщения.
+		</div>
+        <form method="post" id="feedback-form">
+          {% csrf_token %}
+          <input type="hidden" name="feedback_form" value="1">
+          <div class="form-group">
+            <label for="id_name">Имя:</label>
+            {{ feedback_form.name }}
+          </div>
+          <div class="form-group">
+            <label for="id_email">Email:</label>
+            {{ feedback_form.email }}
+          </div>
+          <div class="form-group">
+            <label for="id_subject">Тема:</label>
+            {{ feedback_form.subject }}
+          </div>
+          <div class="form-group">
+            <label for="id_message">Сообщение:</label>
+            {{ feedback_form.message }}
+          </div>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+      </div>
+    </div>
+	</section>
+  
+	<!--footer-->
+	<section class="footer" id="footer">
+	<p class="text-center">
+		<a href="#header" class="gototop"><i class="fa fa-angle-double-up fa-2x"></i></a>
+	</p>
+	<div class="container">
+		<ul>
+			<li><a href="https://www.instagram.com/legenda_oz_?igsh=ZGpkZWtuNjVyb3F4"><i class="fa fa-instagram"></i></a></li>
+			<li><a href="https://vk.com/kafelegendaoz"><i class="fa fa-vk"></i></a></li>
+			<li><a href="https://t.me/legenda_oz"><img src="{% static 'img/telegram.png' %}" alt="Telegram" style="width: 16px; height: 16px; filter: invert(1);"></a></li>
+			<li><a href="https://eda.yandex.ru/restaurant/kafe_legenda_slw9z"><img src="{% static 'img/yandex-eda.png' %}" alt="Яндекс.Еда" style="width: 16px; height: 16px; filter: invert(1);"></a></li> 
+		</ul>
+		<p>
+			&copy; 2024 ИП"Спекторова Г.В." </a>
+		</p>
+	</div>
+	</section>
+	
+</div><!--wrapper end-->
+
+<!--Javascripts-->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/modernizr.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/jquery-scrolltofixed.js' %}"></script>
+<script src="{% static 'js/jquery.nav.js' %}"> </script> 
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/menustick.js' %}"> </script> 
+<script src="{% static 'js/easing.js' %}"></script>
+<script src="{% static 'js/wow.js' %}"></script>
+<script src="{% static 'js/smoothscroll.js' %}"></script>
+<script src="{% static 'js/masonry.js' %}"></script>
+<script src="{% static 'js/imgloaded.js' %}"></script>
+<script src="{% static 'js/classie.js' %}"></script>
+<script src="{% static 'js/colorfinder.js' %}"></script>
+<script src="{% static 'js/gridscroll.js' %}"></script>
+<script src="{% static 'js/contact.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+<script type="text/javascript">
+jQuery(function($) {
+$(document).ready( function() {
+	$('.navbar-wrapper').stickUp();
+	});
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('feedback-form');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+
+        fetch(window.location.href, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                form.reset();
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            } else {
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                if (data.errors) {
+                    const errorText = Object.entries(data.errors)
+                        .map(([field, errors]) => `${field}: ${errors.join(', ')}`)
+                        .join('\n');
+                    errorMessage.textContent = errorText;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.textContent = 'Произошла ошибка при отправке сообщения';
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+        });
+    });
+});
+</script>
+
+</body>
+</html>
+{% endblock %}

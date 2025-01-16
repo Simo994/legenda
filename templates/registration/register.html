@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Регистрация - Легенда{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <section class="auth-section page-section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="auth-form">
+                        <h2 class="text-center mb-4">Регистрация</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            {{ error }}<br>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="id_username">Имя пользователя:</label>
+                                <input type="text" name="username" class="form-control" id="id_username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_email">Email:</label>
+                                <input type="email" name="email" class="form-control" id="id_email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_password1">Пароль:</label>
+                                <input type="password" name="password1" class="form-control" id="id_password1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_password2">Подтверждение пароля:</label>
+                                <input type="password" name="password2" class="form-control" id="id_password2" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.auth-section {
+    background: #f9f9f9;
+    min-height: 100vh;
+    padding: 80px 0;
+}
+.auth-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+</style>
+{% endblock %}

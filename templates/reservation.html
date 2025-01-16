@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Бронирование столика - Легенда{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <section class="reservation-section page-section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="heading text-center">
+                <h2>Бронирование столика</h2>
+                <h3>Забронируйте столик в нашем ресторане</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="reservation-form">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.phone }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.guests }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{ form.date.id_for_label }}">Дата</label>
+                                        {{ form.date }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{ form.time.id_for_label }}">Время</label>
+                                        {{ form.time }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ form.message }}
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Забронировать столик</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.reservation-section {
+    background: #f9f9f9;
+    padding: 80px 0;
+}
+.reservation-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.btn-primary {
+    padding: 12px 30px;
+    font-size: 16px;
+}
+</style>
+{% endblock %}
