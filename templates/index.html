@@ -420,7 +420,41 @@
       </div>
     </div>
 	</section>
-  
+	
+	{% if user.is_authenticated %}
+	<div class="container mt-5">
+	    <h2 class="text-center mb-4">Ваши активные бронирования</h2>
+	    {% if user_reservations %}
+	    <div class="row">
+	        {% for reservation in user_reservations %}
+	        <div class="col-md-6 mb-4">
+	            <div class="card">
+	                <div class="card-body">
+	                    <h5 class="card-title">Бронирование на {{ reservation.date }}</h5>
+	                    <p class="card-text">
+	                        <strong>Время:</strong> {{ reservation.time }}<br>
+	                        <strong>Гости:</strong> {{ reservation.guests }}<br>
+	                        <strong>Телефон:</strong> {{ reservation.phone }}<br>
+	                        {% if reservation.message %}
+	                        <strong>Сообщение:</strong> {{ reservation.message }}<br>
+	                        {% endif %}
+	                    </p>
+	                    <a href="{% url 'cancel_reservation' reservation.pk %}" 
+	                       class="btn btn-danger"
+	                       onclick="return confirm('Вы уверены, что хотите отменить это бронирование?')">
+	                        Отменить бронирование
+	                    </a>
+	                </div>
+	            </div>
+	        </div>
+	        {% endfor %}
+	    </div>
+	    {% else %}
+	    <p class="text-center">У вас пока нет активных бронирований.</p>
+	    {% endif %}
+	</div>
+	{% endif %}
+	
 	<!--footer-->
 	<section class="footer" id="footer">
 	<p class="text-center">

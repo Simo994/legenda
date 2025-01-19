@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from .forms import ReservationForm, UserRegisterForm, FeedbackForm
+from .models import Reservation  # Import Reservation model
 import logging
 import json
 
@@ -28,9 +29,17 @@ def home(request):
                     }
                 })
         
+        user_reservations = []
+        if request.user.is_authenticated:
+            user_reservations = Reservation.objects.filter(
+                email=request.user.email,
+                status='active'
+            ).order_by('-date')
+        
         feedback_form = FeedbackForm()
         return render(request, 'index.html', {
-            'feedback_form': feedback_form
+            'feedback_form': feedback_form,
+            'user_reservations': user_reservations
         })
     except Exception as e:
         logger.error(f"Error in home view: {str(e)}")
@@ -75,6 +84,21 @@ def reservation(request):
     except Exception as e:
         logger.error(f"Error in reservation view: {str(e)}")
         messages.error(request, 'Произошла ошибка при создании бронирования')
+        return redirect('home')
+
+@login_required(login_url='login')
+def cancel_reservation(request, pk):
+    try:
+        reservation = Reservation.objects.get(pk=pk)
+        if reservation.status == 'active':
+            reservation.status = 'cancelled'
+            reservation.save()
+            messages.success(request, 'Бронирование успешно отменено')
+        else:
+            messages.warning(request, 'Это бронирование уже отменено')
+        return redirect('home')
+    except Reservation.DoesNotExist:
+        messages.error(request, 'Бронирование не найдено')
         return redirect('home')
 
 def reservation_success(request):

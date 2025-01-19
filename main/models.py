@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Reservation(models.Model):
+    STATUS_CHOICES = [
+        ('active', 'Активно'),
+        ('cancelled', 'Отменено'),
+    ]
     name = models.CharField('Имя', max_length=100)
     phone = models.CharField('Телефон', max_length=20)
     email = models.EmailField('Email')
@@ -11,6 +15,7 @@ class Reservation(models.Model):
     guests = models.IntegerField('Количество гостей')
     message = models.TextField('Сообщение', blank=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    status = models.CharField('Статус', max_length=20, choices=STATUS_CHOICES, default='active')
 
     class Meta:
         verbose_name = 'Бронирование'

@@ -6,8 +6,8 @@ from django.utils import timezone
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'email', 'date', 'time', 'guests', 'created_at')
-    list_filter = ('date', 'created_at')
+    list_display = ('name', 'phone', 'email', 'date', 'time', 'guests', 'status', 'created_at')
+    list_filter = ('date', 'created_at', 'status')
     search_fields = ('name', 'phone', 'email')
     ordering = ('-created_at',)
 
